@@ -181,8 +181,8 @@ function c_htmltype()
 
 function html()
  {
-  var Ids=Get_Checked("CK");
-  if(Ids=="")
+  var Ids=Get_CheckBox("CK");
+  if(Ids=="0")
     {
      alert("请选择站点!");
      return;

@@ -104,7 +104,7 @@ Write_Select(<%=Request.Cookies["SiteId"].Value%>,'<%=TheTable%>')
 <asp:ListItem value="reply_state>=1">排除"未回复"的信息</asp:ListItem>
 <asp:ListItem value="titlepic<>''">排除"标题图片"为空的信息</asp:ListItem>
 </asp:DropDownList>
-自定义条件：<asp:TextBox id="zdy_condition" Runat="server" size="40" Maxlength="50"/>
+自定义条件：<asp:TextBox id="zdy_condition" Runat="server" size="30" Maxlength="50"/>
 </td>
  </tr>
 
@@ -154,19 +154,19 @@ Write_Select(<%=Request.Cookies["SiteId"].Value%>,'<%=TheTable%>')
 <tr>
   <td height=30>模块布局</td>
   <td>
-<asp:RadioButton id="Layout_1" GroupName="site" runat="server" onclick="Show_ModuleBox()" Title="等同于css里的清除浮动(clear:both)" />默认(<input type="checkbox" name="ck_showbox" id="ck_showbox" value="1" onclick="Show_ModuleBox()" <%=LayoutStyle=="-1"?"checked":""%> title="选中后只显示模块设置的内容，模块自带的div容器标签将不显示，此功能主要用于html自定义布局后消除外层冗余div">清除模块容器标签)              
-<asp:RadioButton id="Layout_2" GroupName="site" runat="server" onclick="Show_ModuleBox()" Title="等同于css里的左浮动(float:left)，多个模块同行显示时，可以选择靠左" />靠左
-<asp:RadioButton id="Layout_3" GroupName="site" runat="server" onclick="Show_ModuleBox()" Title="等同于css里的右浮动(float:right)，多个模块同行显示时，最后一个模块建议选择靠右"/>靠右</td>
+<asp:RadioButton id="Layout_1" GroupName="site" runat="server" Title="一个模块一行" />整行
+<asp:RadioButton id="Layout_2" GroupName="site" runat="server" Title="float:left：多个模块同行显示时，可以选择靠左" />靠左
+<asp:RadioButton id="Layout_3" GroupName="site" runat="server" Title="float:right：如果是同行中最右边的模块，务必选择靠右，以保证各种浏览器正常显示"/>靠右</td>
  </tr>
 
-<tr id="tr_width">
+<tr>
   <td height=30>模块宽度</td>
-  <td><asp:TextBox id="Module_Width" runat="server"  size="7" maxlength="12" Text="100%" Title="模块布局为默认时此设置无效" />(如：500，默认单位为px，也可定义百分比，如：100%)</td>
+  <td><asp:TextBox id="Module_Width" runat="server"  size="7" maxlength="12" value="100%" Title="模块布局为整行时此宽度设置无效" />(如：500，默认单位为px，也可定义百分比，如：100%)</td>
 </tr>
 
-<tr id="tr_height">
+<tr>
   <td height=30>内容区高度</td>
-  <td><asp:TextBox id="Module_Height" runat="server"  size="7" maxlength="12" Text="auto"/>(如：200，默认单位为px，留空或设为auto则自动适应内容高度)</td>
+  <td><asp:TextBox id="Module_Height" runat="server"  size="7" maxlength="12" value="auto"/>(如：200，默认单位为px，留空或设为auto则自动适应内容高度)</td>
 </tr>
 
 <tr title="相对上一个模块的位置，选择'是'则从新的一行开始显示">
@@ -320,36 +320,6 @@ function C_Mode()
       document.getElementById("lb_tagvar").style.display="none";
     }
  }
-
-function Show_ModuleBox()
- {
-   var Layout_1=document.getElementById("Layout_1");
-   var ck_showbox=document.getElementById("ck_showbox");
-   if(Layout_1.checked)
-    {
-     ck_showbox.disabled=false;
-    }
-   else
-    {
-     ck_showbox.disabled=true;
-     ck_showbox.checked=false;
-    }
-
-   if(ck_showbox.checked)
-    {
-     document.getElementsByName("tab")[1].style.display="none";
-     document.getElementById("tr_width").style.display="none";
-     document.getElementById("tr_height").style.display="none";
-    }
-   else
-    {
-     document.getElementsByName("tab")[1].style.display=""
-     document.getElementById("tr_width").style.display="";
-     document.getElementById("tr_height").style.display="";
-    }
-
- }
-Show_ModuleBox();
 
 function Open_TagWin()
  {

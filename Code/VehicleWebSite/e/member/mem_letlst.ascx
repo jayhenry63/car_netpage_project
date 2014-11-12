@@ -14,7 +14,11 @@
       <td align=center  class="memlist_header_item" width="10%">所属表</td> 
       <td align=center  class="memlist_header_item" width="10%">发布人</td> 
       <td align=center  class="memlist_header_item" width="15%">提交时间</td> 
-      <td align=center  class="memlist_header_item" width="10%">状态</td> 
+      <td align=center  class="memlist_header_item" width="10%"><select id="s_type" onchange="Go()">
+<option value="">状态</option>
+<option value="1">已回复</option>
+<option value="0">未回复</option>
+</select></td> 
       <td align=center  class="memlist_header_item_last" width="10%">操作</td> 
     </tr>
 <asp:Repeater id="P1" runat="server" OnItemDataBound="P1_Bound">      

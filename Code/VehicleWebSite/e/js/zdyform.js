@@ -176,7 +176,6 @@ function Check_ZdyForm(formName,PostType)
        for(i=0;i<AFields.length-1;i++)
         {
           Obj=document.forms[formName][AFields[i]];
-          if(Obj==null){continue;}
           switch(AFieldtype[i])
            {
              case "select":

@@ -262,11 +262,11 @@ private bool IsNum(string str)
 <div id="tabdiv">
 <ul>
 <li id="tab" name="tab" onclick="Go_Tab('')">所有来路</li>
-<li id="tab" name="tab" onclick="Go_Tab('www.baidu.com')">百度</li>
-<li id="tab" name="tab" onclick="Go_Tab('www.so.com')">360搜索</li>
-<li id="tab" name="tab" onclick="Go_Tab('www.sogou.com')">搜狗</li>
+<li id="tab" name="tab" onclick="Go_Tab('baidu.com')">百度</li>
+<li id="tab" name="tab" onclick="Go_Tab('360.cn')">360搜索</li>
 <li id="tab" name="tab" onclick="Go_Tab('google.com')">google</li>
 <li id="tab" name="tab" onclick="Go_Tab('soso.com')">搜搜</li>
+<li id="tab" name="tab" onclick="Go_Tab('sogou.com')">搜狗</li>
 </ul>
 </div>
 <table border=0 cellpadding=5 cellspacing=0 width=100% align=center  class=table_style2>
@@ -346,23 +346,23 @@ var C_Tab="<%=Request.QueryString["from"]%>";
 var obj=document.getElementsByName("tab");
 switch(C_Tab)
  {
-   case "www.baidu.com":
+   case "baidu.com":
     obj[1].style.fontWeight="bold";
    break;
 
-   case "www.so.com":
+   case "360.cn":
     obj[2].style.fontWeight="bold";
    break;
 
-   case "www.sogou.com":
+   case "google.com":
     obj[3].style.fontWeight="bold";
    break;
 
-   case "google.com":
+   case "soso.com":
     obj[4].style.fontWeight="bold";
    break;
 
-   case "soso.com":
+   case "sogou.com":
     obj[5].style.fontWeight="bold";
    break;
 

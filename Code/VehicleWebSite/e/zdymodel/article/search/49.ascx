@@ -24,10 +24,13 @@ dr=dt.Rows[i];
 }
 else
 {
- Response.Write("无匹配的记录,请更换关键字重新搜索！");
+ Response.Write("<br>无匹配的记录,请更换关键字重新搜索！");
 }
 %>
 </ul>
+<script type="text/javascript">
+Id("s_kw").value=Request("title");
+</script>
 <%conn.Close();
 if(PageCount>1)
 {

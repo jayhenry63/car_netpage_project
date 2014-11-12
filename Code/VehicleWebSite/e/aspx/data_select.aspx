@@ -5,11 +5,9 @@
 <script Language="c#" Runat="server">
   OleDbConnection conn;
   int SiteId,PageSize,List_Level;
-  string Sort_Ids,Is_Static,TheTable,ID,List_Space,sql_str,order_str,Url_Prefix,Sort_List,Query_Sql,Count_Sql,List_style;
+  string Sort_Ids,Is_Static,TheTable,ID,List_Space,sql_str,order_str,Url_Prefix,Sort_List;
   protected void Page_Load(Object src,EventArgs e)
    {
-    Master_Valicate YZ=new Master_Valicate();
-    YZ.Master_Check();
     Conn theconn=new Conn();
     conn=new OleDbConnection(theconn.Constr());
     TheTable=Request.QueryString["table"];
@@ -35,10 +33,20 @@
      Response.Write("无效的参数!");
      Response.End();
      }
-    conn.Open();
-    sql_str="";
-    if(IsNum(Request.QueryString["sortid"]))
-      {
+    if(!Page.IsPostBack)
+    {
+
+      ViewState["CurrentPage"]=0;
+      conn.Open();
+      if(IsNum(Request.QueryString["pagesize"]))
+       {
+         PageSize=int.Parse(Request.QueryString["pagesize"]);
+         Tb_pagesize.Text=PageSize.ToString();
+       }
+      sql_str="";
+
+      if(IsNum(Request.QueryString["sortid"]))
+       {
           Sort_Ids=SortIds(int.Parse(Request.QueryString["sortid"]));
           if(IsNum(Sort_Ids))
            {
@@ -48,41 +56,35 @@
            {
             sql_str+=" and sort_id in ("+Sort_Ids+") ";
            }  
-       }
+        }
 
-     if(Request.QueryString["keyword"]!=null && Request.QueryString["keyword"]!="")
+      if(Request.QueryString["keyword"]!=null && Request.QueryString["keyword"]!="")
        {
          sql_str+=" and title like '%"+Sql_Format(Request.QueryString["keyword"])+"%'";
        }
-    Query_Sql="select site_id,sort_id,id,title,static_dir,static_file,lanmu_id,sublanmu_id,zdy_url,permissions,checked,[html],thedate from "+TheTable+" where site_id="+SiteId+" and checked=1 and source_id=0"+sql_str+" order by thedate desc";
-    Count_Sql="select count(id) as co from "+TheTable+" where site_id="+SiteId+" and checked=1 and source_id=0"+sql_str;
-    if(!Page.IsPostBack)
-    {
-      ViewState["CurrentPage"]=0;
-      if(IsNum(Request.QueryString["pagesize"]))
-       {
-         PageSize=int.Parse(Request.QueryString["pagesize"]);
-         Tb_pagesize.Text=PageSize.ToString();
-       }
+
+      ViewState["Calculatesql"]="select count(id) as co from "+TheTable+" where site_id="+SiteId+sql_str;
+      ViewState["sql"]="select site_id,sort_id,id,title,static_dir,static_file,lanmu_id,sublanmu_id,zdy_url,permissions,checked,[html],thedate from "+TheTable+" where site_id="+SiteId+sql_str+" order by thedate desc";
         Check_Table();
         Get_Site(SiteId);
-        Get_Fields();
         Tongji();
         Data_Bind();
         Get_Sort(0);
+     conn.Close();
      Tb_pagesize.Text=PageSize.ToString();
     }
    else
     {
-       Check_Table();
+      conn.Open();
        Get_Site(SiteId);
        Get_Sort(0);
+      conn.Close();
     }
-    conn.Close();
   }
 
 private void Data_Bind()
  {
+  string sql=(string)ViewState["sql"];
   int CurrentPage=(int)ViewState["CurrentPage"];
   int PageCount=(int)ViewState["PageCount"];
   LblPrev.Enabled=true;
@@ -138,7 +140,7 @@ private void Data_Bind()
   
   int StartIndex=CurrentPage*PageSize;
   DataSet ds=new DataSet();
-  OleDbDataAdapter myAdapter=new OleDbDataAdapter(Query_Sql,conn);//在数据库和DataSet之间建立桥接。
+  OleDbDataAdapter myAdapter=new OleDbDataAdapter(sql,conn);//在数据库和DataSet之间建立桥接。
   myAdapter.Fill(ds,StartIndex,PageSize,"default");
   P1.DataSource=ds.Tables["default"].DefaultView;
   P1.DataBind();
@@ -147,7 +149,8 @@ private void Data_Bind()
 private void Tongji()
 {
 //计算总记录
- OleDbCommand myComm=new OleDbCommand(Count_Sql,conn);
+ string sql=(string)ViewState["Calculatesql"];
+ OleDbCommand myComm=new OleDbCommand(sql,conn);
  OleDbDataReader dr=myComm.ExecuteReader();
  int Rcount;
   if(dr.Read())
@@ -189,25 +192,13 @@ private void Get_Sort(int Parentid)
        {
         List_Space+="&nbsp;&nbsp;&nbsp;";
        }
-      if(List_Level>1)
-      {
-       List_Space+="|-";
-      }
       if(dr["final_sort"].ToString()=="1") 
        {
          Sort_List+="<option value='"+dr["id"].ToString()+"'>"+List_Space+dr["sort_name"].ToString()+"</option>\r\n";
        }
       else
        {
-        if(List_Level==1)
-         {
-           List_style=" class='rootnode' ";
-         }
-        else
-         {
-           List_style=" class='childnode' ";
-         }
-         Sort_List+="<option "+List_style+" value='"+dr["id"].ToString()+"'>"+List_Space+dr["sort_name"].ToString()+"</option>\r\n";
+         Sort_List+="<option value='"+dr["id"].ToString()+"'>"+List_Space+dr["sort_name"].ToString()+"</option>\r\n";
        }
       Get_Sort(int.Parse(dr["id"].ToString()));
     }
@@ -227,20 +218,6 @@ protected string GetSortName(string sortid)
    dr.Close();
    return Rv;
  }
-
-private void Get_Fields()
-  {
-    string TitleName="标题";
-    string sql="select [field_name] from pa_field where thetable='"+TheTable+"' and field='title'";
-    OleDbCommand comm=new OleDbCommand(sql,conn);
-    OleDbDataReader dr=comm.ExecuteReader();
-    if(dr.Read())
-     {
-       TitleName=dr["field_name"].ToString();
-     }
-    dr.Close();
-   lb_title.Text=TitleName;
-  }
 
 private void Check_Table()
  {
@@ -530,8 +507,6 @@ a:hover{color:#000000;text-decoration: none;}
 .tablestyle tr.listitem td a{text-decoration: none;}   
 .tablestyle tr.listitem td a:hover{text-decoration:underline;} 
 .white{color:white;font-size:9pt;}
-select .rootnode{background-color:#8AC9FD}
-select .childnode{background-color:#D1EAFE}
 </style>
 </head>
 <body topmargin=0 bottommargin=0 leftmargin=0  rightmargin=0>
@@ -560,14 +535,14 @@ select .childnode{background-color:#D1EAFE}
         <td align="left">
             <table border=0 cellpadding=0 cellspacing=0 width=100% class="tablestyle" id="tb_datalist">
                 <tr class="header">
-                  <td width=30px>选择</td>
-                  <td noWrap><asp:Label id="lb_title" runat="server"/></td>
+                  <td noWrap>选择</td>
+                  {pa:ReplaceListHead}
                 </tr>
           <asp:Repeater id="P1" runat="server" OnItemDataBound="Data_Bound">         
              <ItemTemplate>
                  <tr class="listitem">
-                  <td width=30px class="tdstyle"><%if(Request.QueryString["multiple"]=="1"){%><input type="checkbox" id="CK" Name="CK" Value="<%#DataBinder.Eval(Container.DataItem,"id")%>"><%}else{%><input type="button" value="选择"  onclick="GetValue(<%#DataBinder.Eval(Container.DataItem,"id")%>)"><%}%><input type="hidden" id="Title_<%#DataBinder.Eval(Container.DataItem,"id")%>" value="<%#Server.HtmlEncode(DataBinder.Eval(Container.DataItem,"title").ToString())%>"></td>
-                  <td noWrap class="tdstyle"><%#GetSortName(DataBinder.Eval(Container.DataItem,"sort_id").ToString())%><a href='<%#DetailUrl(DataBinder.Eval(Container.DataItem,"static_dir").ToString(),DataBinder.Eval(Container.DataItem,"static_file").ToString(),DataBinder.Eval(Container.DataItem,"lanmu_id").ToString(),DataBinder.Eval(Container.DataItem,"subLanmu_id").ToString(),DataBinder.Eval(Container.DataItem,"id").ToString(),DataBinder.Eval(Container.DataItem,"zdy_url").ToString(),DataBinder.Eval(Container.DataItem,"permissions").ToString(),DataBinder.Eval(Container.DataItem,"checked").ToString(),DataBinder.Eval(Container.DataItem,"html").ToString())%>' target="_blank"><%#SubStr(DataBinder.Eval(Container.DataItem,"title").ToString(),50,true)%></a></td>
+                  <td noWrap><%if(Request.QueryString["multiple"]=="1"){%><input type="checkbox" id="CK" Name="CK" Value="<%#DataBinder.Eval(Container.DataItem,"id")%>"><%}else{%><input type="button" value="选择"  onclick="GetValue(<%#DataBinder.Eval(Container.DataItem,"id")%>)"><%}%></td>
+                  {pa:ReplaceListData}
                 </tr>
              </ItemTemplate>
           </asp:Repeater>
@@ -600,6 +575,7 @@ select .childnode{background-color:#D1EAFE}
 </div>
 </center>
 <script type="text/javascript">
+ MouseoverColor("tb_datalist");
  var obj_sort=document.getElementById("sortid");
  var obj_order=document.getElementById("s_order");
  var obj_keyword=document.getElementById("s_keyword");
@@ -637,11 +613,11 @@ function GetValue(Id)
 
 function Get_Select()
  {
-  var Ids=Get_Checked("CK");
+  var Ids=Get_CheckBox("CK");
   var txt;
-  if(Ids=="")
+  if(Ids=="0")
    {
-     alert("请选择!");
+     alert("请选择记录!");
      return;
    }
   var AIds=Ids.split(',');
@@ -672,10 +648,10 @@ function CheckRepeat(op_obj,id)
   return false;
  }
 
-function Get_Checked(Name) //获取checkbox或radio组信息
+function Get_CheckBox(Name)
  {
    var Obj=document.getElementsByName(Name);
-   var ID="";
+   var ID="0";
    for(i=0;i<Obj.length;i++)
      {
       if(Obj[i].checked)
@@ -683,7 +659,7 @@ function Get_Checked(Name) //获取checkbox或radio组信息
          ID+=","+Obj[i].value;
        }
      }
-   return ID.replace(",","");
+   return ID.replace("0,","");
  }
 
 function select_ck(id)
@@ -727,7 +703,6 @@ function MouseoverColor(id)
    }
   }
 }
- MouseoverColor("tb_datalist");
 </script>
 </body>
 </html>  

@@ -142,9 +142,9 @@ function del(did,dname)
 
 function set(act)
  {
-   var Ids=Get_Checked("CK");
+   var Ids=Get_CheckBox("CK");
    var A_Ids=Ids.split(",");
-   if(Ids=="")
+   if(Ids=="0")
     {
       alert("请选择要操作的模块!");
       return;

@@ -572,14 +572,27 @@ function Go()
    location.href="?multiple="+multiple+"&siteid="+obj_site.value+"&startdate="+escape(obj_date1.value)+"&enddate="+escape(obj_date2.value)+"&keyword="+escape(obj_keyword.value)+"&pagesize="+obj_pagesize.value;
   }
 
+function Get_CheckBox(Name)
+ {
+   var Obj=document.getElementsByName(Name);
+   var ID="0";
+   for(i=0;i<Obj.length;i++)
+     {
+      if(Obj[i].checked)
+       {
+         ID+=","+Obj[i].value;
+       }
+     }
+   return ID.replace("0,","");
+ }
 
 var op_obj=parent.document.getElementById("zt_list");
 
 function GetCheckItem()
  {
-   var Ids=Get_Checked("CK");
+   var Ids=Get_CheckBox("CK");
    var Title;
-   if(Ids!="")
+   if(Ids!="0")
     {
       var AIds=Ids.split(',');
       for(var i=0;i<AIds.length;i++)

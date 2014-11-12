@@ -54,7 +54,22 @@ var Current_Id="<%=Request.QueryString["id"]%>";
 <%if(Sort_Id!="0"){%>
 Load_Sort(<%=SiteId%>,"<%=P_Sorts%>,<%=Sort_Id%>","<%=The_Table%>");
 <%}%>
-
+function selectall(Id)
+ {
+  var obj=document.getElementById(Id);
+  if(obj.options.length==0)
+   {
+     obj.options.add(new Option(" ",""));
+     return;
+   }
+  for(i=0;i<obj.options.length;i++)
+   {
+    if(obj.options[i].selected==false)
+     {
+      obj.options[i].selected=true;
+     }
+   }
+ }
 function clear_select(Id)
  {
   var obj=document.getElementById(Id);
@@ -68,14 +83,11 @@ function clear_select(Id)
      }
    }
  }
-//自定义选择数据
-function Data_Select(SourceTable,field,ismultiple,title,Width,Height)
+function Data_Select(SourceTable,Id,ismultiple,title)
  {
   if(typeof(ismultiple)=="undefined"){ismultiple="0";}
   if(typeof(title)=="undefined"){title="请选择数据";}
-  if(typeof(Width)=="undefined"){Width=800;}
-  if(typeof(Height)=="undefined"){Height=400;}
-  IDialog(title,"/e/aspx/data_select.aspx?siteid=<%=SiteId%>&table="+SourceTable+"&field="+field+"&multiple="+ismultiple,800,400);
+  IDialog(title,"/e/aspx/data_select.aspx?siteid=<%=SiteId%>&table="+SourceTable+"&id="+Id+"&multiple="+ismultiple,800,400);
  }
 </script>
 </div>

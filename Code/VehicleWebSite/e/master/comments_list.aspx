@@ -134,10 +134,24 @@ MouseoverColor("tb_list");
     location.href="?table="+Table+"&name="+escape(Tname)+"&detailid="+detailid+"&type="+obj_type.value+"&order="+obj_order.value+"&keyword="+escape(obj_keyword.value)+"&pagesize="+obj_pagesize.value;
   }
 
+function Get_CheckBox(Name)
+ {
+   var Obj=document.getElementsByName(Name);
+   var ID="0";
+   for(i=0;i<Obj.length;i++)
+     {
+      if(Obj[i].checked)
+       {
+         ID+=","+Obj[i].value;
+       }
+     }
+   return ID.replace("0,","");
+ }
+
 function set(act)
  {
-   var Ids=Get_Checked("CK");
-   if(Ids=="")
+   var Ids=Get_CheckBox("CK");
+   if(Ids=="0")
     {
       alert("请选择要操作的评论!");
       return;

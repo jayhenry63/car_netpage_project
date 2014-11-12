@@ -528,7 +528,7 @@ function get_logourl(url)
 function SendTest(type)
  {
   var title;
-  if(type=="email")
+  if(type=="emial")
    { 
      title="邮件发送";
    }

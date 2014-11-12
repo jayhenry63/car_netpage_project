@@ -354,6 +354,19 @@ function IsChecked(obj)  //检测radid或checkbox是否有选择
  return false;
 } 
 
+function Get_CheckBox(Name) //获取checkbox或radio组信息
+ {
+   var Obj=document.getElementsByName(Name);
+   var ID="0";
+   for(i=0;i<Obj.length;i++)
+     {
+      if(Obj[i].checked)
+       {
+         ID+=","+Obj[i].value;
+       }
+     }
+   return ID.replace("0,","");
+ }
 
 function CheckBox_Inverse(Name) //反选checkbox
  {
@@ -371,23 +384,7 @@ function CheckBox_Inverse(Name) //反选checkbox
        }
      }
  }
-
-
-function Get_Checked(Name) //获取checkbox或radio组信息
- {
-   var Obj=document.getElementsByName(Name);
-   var ID="";
-   for(i=0;i<Obj.length;i++)
-     {
-      if(Obj[i].checked)
-       {
-         ID+=","+Obj[i].value;
-       }
-     }
-   return ID.replace(",","");
- }
-
-function Set_Checked(ckvalue,objname) //根据值设置checkbox表单
+function Set_CheckBox(ckvalue,objname) //根据值设置checkbox表单
  {
   var obj=document.getElementsByName(objname);
   var Ackvalue=ckvalue.split(',');
@@ -395,7 +392,7 @@ function Set_Checked(ckvalue,objname) //根据值设置checkbox表单
    {
      for(k=0;k<obj.length;k++)
       {
-        if(obj[k].value==Ackvalue[i] || ckvalue=="check-all")
+        if(obj[k].value==Ackvalue[i])
          {
           obj[k].checked=true;
          }
@@ -403,21 +400,7 @@ function Set_Checked(ckvalue,objname) //根据值设置checkbox表单
    }
  }
 
-function Get_Selected(Id) //获取select选中的值
- {
-   var Obj=document.getElementById(Id);
-   var ID="";
-   for(i=0;i<Obj.options.length;i++)
-     {
-      if(Obj.options[i].selected)
-       {
-         ID+=","+Obj.options[i].value;
-       }
-     }
-   return ID.replace(",","");
- }
-
-function Set_Selected(selectvalue,objname) //根据值设置select表单
+function Set_Select(selectvalue,objname) //根据值设置select表单
  {
   var obj=document.getElementById(objname);
   var Avalue=selectvalue.split(',');
@@ -425,7 +408,7 @@ function Set_Selected(selectvalue,objname) //根据值设置select表单
    {
      for(k=0;k<obj.options.length;k++)
       {
-        if(obj.options[k].value==Avalue[i] || selectvalue=="select-all")
+        if(obj.options[k].value==Avalue[i])
          {
           obj.options[k].selected=true;
          }

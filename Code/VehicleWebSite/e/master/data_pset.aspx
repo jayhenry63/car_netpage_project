@@ -934,7 +934,7 @@ for(var i=0;i<AFields.length-1;i++)
   obj.options.add(new Option(AFields_Name[i]+"("+AFields[i].split('|')[0]+")",AFields[i]));
  }
 document.getElementById("ids").value=parent.document.getElementById("ids").value;
-if(document.getElementById("ids").value=="0" || document.getElementById("ids").value==""){document.getElementById("pushset").disabled="disabled";document.getElementById("siteidset").disabled="disabled";}
+if(document.getElementById("ids").value=="0"){document.getElementById("pushset").disabled="disabled";document.getElementById("siteidset").disabled="disabled";}
 document.getElementById("sortid").value=parent.document.getElementById("sortid").value;
 
 function ck()

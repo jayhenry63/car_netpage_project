@@ -20,7 +20,7 @@
       <td align=center  class="memlist_header_item" width="10%">选择</td>
       <td align=center  class="memlist_header_item" width="15%">用户名</td>
       <td align=center  class="memlist_header_item" width="30%">备注</td> 
-      <td align=center  class="memlist_header_item" width="15%"><asp:DropDownList id="Dl_Sort" runat="server" DataTextField="sort_name" DataValueField="id" AutoPostBack="false"  OnChange="show_sort(this.options[this.options.selectedIndex].value)" /></td> 
+      <td align=center  class="memlist_header_item" width="15%"><asp:DropDownList id="Dl_Sort" runat="server" DataTextField="sort_name" DataValueField="id" AutoPostBack="true"  OnSelectedIndexChanged="PageAdmin_Sort_Change" /></td> 
       <td align=center  class="memlist_header_item_last" width="15%">添加时间</td> 
     </tr>
 <asp:Repeater id="P1" runat="server" OnItemDataBound="P1_Bound">      
@@ -41,7 +41,7 @@
 <input type="button" class="m_bt" value="反选" onclick="CheckBox_Inverse('CK')" >
 <input type="hidden" value="" name="act" id="act"><input type="hidden" value="" name="ids" id="ids">
 <asp:Button Text="更新" CssClass="m_bt" runat="server" onclick="Data_Update" onclientclick="return set('update')" />
-<asp:Button Text="删除" CssClass="m_bt" runat="server" onclick="Data_Delete" onclientclick="return set('delete')" />
+<asp:Button Text="删除" CssClass="m_bt" runat="server" onclick="Data_Delete" onclientclick="return set('update')" />
      </td>
      </tr>
  </table> 
@@ -75,14 +75,10 @@
 </div>
 </div>
 <script type="text/javascript">
-function show_sort(id)
- {
-   location.href="?s=<%=SiteId%>&type=mem_friends&sort="+id;
- }
 function set(act)
  { 
-  var IDS=Get_Checked("CK");
-  if(IDS=="")
+  var IDS=Get_CheckBox("CK");
+  if(IDS=="0")
    {
      alert("请选择要操作的记录!");
      return false;

@@ -1,17 +1,37 @@
 ﻿@import url(/e/css/tab.css);
 
+/*主搜索框*/
+.search_bar{margin:30px 20px 0 0;width:260px;height:23px;}
+.search_bar .stitle{float:left;border:1px solid #cccccc;width:180px;margin:1px 0 0 0;height:19px;}
+.search_bar .button{float:right;width:69px;height:23px;background:url(images/search_btn.gif) no-repeat 0 0px;color:#fff;margin:1px 1px 1px 1px;}
+
+
+/*首页自定义样式*/
+.gonggao{text-align:left;overflow:hidden;}
+.gonggao li{display:block;padding:0px 0px 0 12px;overflow:hidden;background:url(images/article_arrow.gif) no-repeat left 11px}
+.home_slide{padding:10px 0px 0px 10px;background:url(images/xyxwpicBg.pn) repeat-x 0 0;overflow:hidden}
+
+
 /*文章样式*/
 .article{overflow:hidden;}
-.article li{clear:both;height:20px;padding:8px 0 0 5px;text-align:left;border:0px dotted #cccccc;border-width:0 0 1px 0;overflow:hidden;}
-.article .title{float:left;text-align:left;padding:0 0 0 13px;background:url(images/article_arrow.gif) no-repeat left center;}
+.article li{clear:both;height:20px;padding:3px 0 2px 5px;text-align:left;border:0px dashed #ddd;border-width:0 0 1px 0;overflow:hidden;}
+.article .title{float:left;text-align:left;padding:0 0 0 13px;background:url(images/article_arrow.gif) no-repeat left 10px;}
 .article .date{float:right;color:#666666;padding-right:2px}
-.article table td{text-align:center}
-.article table td img{border:1px solid #ececec;margin:5px 5px 5px 5px;}
+.article table td{text-align:center;padding:0px 0 2px 0px;}
+.article table td img{padding:1px;border:1px solid #ececec;margin:5px 5px 3px 5px;}
 .sublanmu_box .article li{height:25px}
+.lanmupage .article li{border-width:0px}
+.nav_box .article li{border-width:0px}
+.nav_box .articlephb{background:url(images/no.gif) no-repeat 2px 5px;}
+.nav_box .articlephb li{height:25px;line-height:25px;padding:0 0 0 20px;overflow:hidden}
+
+.articlephb1{background:url(images/no1.gif) no-repeat 0px 5px;}
+.articlephb1 li{height:24px;line-height:24px;padding:0 0 0 20px;overflow:hidden}
+
 
 .tw_article{clear:both;}
-.tw_article li{text-align:left;border:1px dotted #cccccc;border-width:0 0 1px 0;padding:10px 0 10px 0;overflow:hidden;height:100%} /*置顶通用样式*/
-.tw_article .pic{float:left;margin:5px 10px 5px 0;border:1px solid #dddddd;display:inline;line-height:0px;}
+.tw_article li{text-align:left;border:1px dotted #cccccc;border-width:0 0 1px 0;padding:10px 0 10px 0;overflow:hidden;} /*置顶通用样式*/
+.tw_article .pic{float:left;margin:5px 10px 5px 0;border:1px solid #dddddd;display:inline}
 .tw_article .content{float:none!important;float:left;display:inline}
 .tw_article .title{text-align:left;line-height:20px;}
 .tw_article .title a{font-weight:bold;padding-left:0px}
@@ -25,11 +45,11 @@
 .article_pic li .title{display:block;text-align:center}
 
 .hh_article{clear:both;} /*文章带置顶样式*/
-.hh_article li.tw{text-align:left;border:1px dotted #cccccc;border-width:0 0 1px 0;padding:5px 0 5px 0;overflow:hidden;height:100%} /*置顶通用样式*/
+.hh_article li.tw{clear:both;text-align:left;border:1px dotted #cccccc;border-width:0 0 1px 0;padding:5px 5px 5px 5px;} /*置顶通用样式*/
 .hh_article .tw .pic{float:left;margin:5px 10px 5px 0;border:1px solid #dddddd;display:inline}
 .hh_article .tw .title{text-align:left;line-height:25px;}
-.hh_article .tw .title a{font-weight:bold;padding-left:0px;font-size:14px;color:#cc0000}
-.hh_article .tw .introduct{padding:2px 5px 5px 0px;line-height:20px;color:#666666;}
+.hh_article .tw .title a{font-weight:bold;padding-left:0px;font-size:14px;color:#ff0000}
+.hh_article .tw .introduct{display:block;line-height:20px;color:#666666;}
 .hh_article li.normal{clear:both;height:20px;padding:6px 0 2px 5px;text-align:left;overflow:hidden;}
 .hh_article .normal .title{float:left;text-align:left;padding:0 0 0 10px;background:url(images/article_arrow.gif) no-repeat left center;}
 .hh_article .normal .date{float:right;color:#666666;padding-right:2px}
@@ -37,8 +57,8 @@
 
 .articleinfor .title{text-align:center;padding:10px 0 5px 0;border:1px dotted #cccccc;border-width:0 0 1px 0}
 .articleinfor .title h1{font-size:16px;font-weight:bold;}
-.articleinfor .info{text-align:center;padding:3px 10px 5px 0;color:#666666}
-.articleinfor .content{font-size:13px;line-height:180%;padding:10px 0 10px 0;}
+.articleinfor .info{text-align:center;padding:5px 10px 5px 0;color:#666666}
+.articleinfor .content{font-size:13px;line-height:180%;padding:10px 5px 5px 5px;}
 .articleinfor .bz{text-align:center;width:250px;background-color:#ffff99;border:1px solid #ff9900;padding:2px 0 3px 0;}
 
 .article_pic_infor{display:block;}
@@ -51,10 +71,13 @@
 .article_pic_infor .content{display:block;text-align:left;padding:10px 0 5px 0;width:97%}
 .article_pic_infor .content .title{display:block;width:100%;height:29px;padding-top:5px;background:url(images/list_titlebg.jpg) repeat-x left top;}
 
-.related_article{display:block;margin:10px 0 10px 0}
-.related_article .header{font-size:12px;color:#D33506;line-height:25px;font-weight:bold;}
-.related_article li{height:25px;padding:0 10px 0 10px;background:url(images/article_arrow.gif) no-repeat left center;}
-.related_article li a{font-size:12px;}
+.related{margin:20px 0 10px 0}
+.related ul{clear:both;overflow:hidden}
+.related .headtxt{font-size:14px;color:#D33506}
+.related li{height:23px;background:url(images/article_arrow.gif) no-repeat left 10px;;overflow:hidden;}
+.related li a{color:#333;font-size:13px;padding-left:10px;}
+.sublanmu_pn{font-size:13px;margin:15px 0 5px 0}
+.sublanmu_pn li{color:#D33506}
 
 /*产品表样式*/
 .product{overflow:hidden;}
@@ -128,7 +151,7 @@
 .job table{width:99%;border:0px solid #cccccc;text-align:center}
 .job table td{align:center;padding:2px 2px 3px 2px}
 .job table td a{}
-.job table tr.header{height:25px;border:0 dashed #cccccc;background-color:#990000;color:#ffffff}
+.job table tr.header{height:25px;border:0 dashed #cccccc;background-color:#44a8e7;color:#ffffff}
 .job table tr.item{height:28px;border:0 solid #dddddd;border-width:0 0 1px 0;}
 
 .jobinfo{width:99%;}

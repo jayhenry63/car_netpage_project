@@ -73,7 +73,7 @@
     </table>
 <br>
 <div align=center>
-<input type="hidden" id="lanmuparpams" value="">
+<input type="text" id="lanmuparpams" value="">
 <input  type="button"  id="stop" value="停止"  Class="button" onclick="StopOrStart()" style="display:none">
 <input  type="button"  id="tijiao" value="采集"  Class="button" onclick="return CheckForm()" >
 &nbsp;&nbsp;<input type="button" value="返回"  Class="button" OnClick="location.href='collection_1.aspx'">

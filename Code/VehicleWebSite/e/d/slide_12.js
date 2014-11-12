@@ -20,7 +20,7 @@ for(i=0;i<Total_Item;i++)
 
 function LoadSlideBox_12()
 {
-var bcastr_config="&bcastr_config=0xffffff|2|0x000000|60|0xffffff|0xff6600|0x000033|4|2|1|_self";
+var bcastr_config="&bcastr_config=0xffffff|2|0x000000|60|0xffffff|0xff6600|0x000033|7|1|1|_self";
 //文字颜色|文字位置|文字背景颜色|文字背景透明度|按键文字颜色|按键默认颜色|按键当前颜色|自动播放时间(秒)|图片过渡效果|是否显示按钮|打开目标窗口
 var swf_width=1000;
 var swf_height=300;

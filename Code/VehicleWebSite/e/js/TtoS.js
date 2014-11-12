@@ -37,7 +37,6 @@ function StranBody(fobj)
 		var OO=obj.item(i)
 		if("||BR|HR|TEXTAREA|EMBED|SCRIPT|OBJECT|PARAM".indexOf("|"+OO.tagName+"|")>0||OO==StranLink_Obj)continue;
 		if(OO.title!=""&&OO.title!=null)OO.title=StranText(OO.title);
-		if(OO.alt!=""&&OO.alt!=null)OO.alt=StranText(OO.alt);
 		if(OO.tagName=="INPUT"&&OO.value!=""&&OO.type!="text"&&OO.type!="hidden")OO.value=StranText(OO.value);
 		if(OO.tagName=="IFRAME" && OO.src.lastIndexOf("fckeditor")==-1) {try{window.frames[OO.id].document.body.innerHTML=StranText(window.frames[OO.id].document.body.innerHTML);}catch(e){}}
 		if(OO.nodeType==3){OO.data=StranText(OO.data)}

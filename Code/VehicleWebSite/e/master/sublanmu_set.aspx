@@ -456,11 +456,11 @@ function c_f()
        if(sort=="" || sort=="0")
        {
           sort=document.getElementById("sort").value;
-          RepeatCheck(sort);
+          //RepeatCheck(sort);
           if(IsRepeat!="")
            {
-             alert("请取消”是否作为调用分类的目标子栏目”属性的选择!\n\n此调用分类的子分类已经被其他子栏目调用，并已作为目标子栏目存在。");
-             return false;
+             //alert("请取消”是否作为调用分类的目标子栏目”属性的选择!\n\n此调用分类的子分类已经被其他子栏目调用，并已作为目标子栏目存在。");
+             //return false;
            }
        }
      }

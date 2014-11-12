@@ -5,7 +5,7 @@
    if(MenuItem.length<=1){return;}
    if(typeof(submenu_style)=="undefined")
     {
-      submenu_style=0;  //1表示纵向下拉，2表示横向下拉,其他数值则关闭
+      submenu_style=1;  //1表示纵向下拉，2表示横向下拉,其他数值则关闭
     }
    switch(submenu_style)
     {

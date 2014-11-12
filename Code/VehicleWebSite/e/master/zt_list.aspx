@@ -142,6 +142,21 @@
    location.href="?table="+Table+"&name="+escape(tablename)+"&field="+obj_field.value+"&order="+obj_order.value+"&keyword="+escape(obj_keyword.value)+"&startdate="+escape(obj_date1.value)+"&enddate="+escape(obj_date2.value)+"&pagesize="+obj_pagesize.value;
   }
 
+function Get_CheckBox(Name)
+ {
+   var Obj=document.getElementsByName(Name);
+   var ID="0";
+   for(i=0;i<Obj.length;i++)
+     {
+      if(Obj[i].checked)
+       {
+         ID+=","+Obj[i].value;
+       }
+     }
+   return ID.replace("0,","");
+ }
+
+
 function del(did,dname)
  {
    if(confirm("确定删除吗?"))
@@ -155,11 +170,11 @@ function del(did,dname)
 
 function set(act)
  {
-   var Ids=Get_Checked("CK");
+   var Ids=Get_CheckBox("CK");
    var A_Ids=Ids.split(",");
-   if(Ids=="")
+   if(Ids=="0")
     {
-      alert("请选择要操作的专题栏目!");
+      alert("请选择要操作的栏目!");
       return;
     }
    switch(act)
@@ -200,22 +215,22 @@ function View_Data(id,title)
 
 function html()
  {
-  var Ids=Get_Checked("CK");
-  if(Ids=="")
+  var Ids=Get_CheckBox("CK");
+  if(Ids=="0")
     {
      if(!confirm("请选择要生成的专题页面！\r\n如果不选择将生成所有的专题,是否确定全部生成？"))
       {
         return;
       }
     }
-   var htmltype=document.getElementById("htmltype");
+
    if(htmltype.value=="0")
      {
-      htm_panel("专题封面页","pa_zt",Ids);
+      htm_panel("栏目封面页","pa_zt",Ids);
      }
    else
      {
-      htm_panel("专题子栏目","pa_zt_sublanmu",Ids);
+      htm_panel("子栏目","pa_zt_sublanmu",Ids);
      }
  }
 

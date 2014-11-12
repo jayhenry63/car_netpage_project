@@ -160,6 +160,20 @@
  if(obj_order!=null && Order!=""){obj_order.value=Order;}
  if(obj_keyword!=null){obj_keyword.value=Keyword;}
 
+function Get_CheckBox(Name)
+ {
+   var Obj=document.getElementsByName(Name);
+   var ID="0";
+   for(i=0;i<Obj.length;i++)
+     {
+      if(Obj[i].checked)
+       {
+         ID+=","+Obj[i].value;
+       }
+     }
+   return ID.replace("0,","");
+ }
+
 function check_permissions()
  {
    var username="<%=UserName%>";
@@ -189,7 +203,7 @@ function del(dname)
 
 function set(act)
  {
-   var Ids=Get_Checked("CK");
+   var Ids=Get_CheckBox("CK");
    if(act!="sendmsg")
     {
      if(!check_permissions()){return;}
@@ -206,7 +220,7 @@ function set(act)
       window.open("/e/zdyform/pa_member/master/data_export.aspx?act=buildfile&siteid=<%=SiteId%>&table=pa_member&ids="+Ids+"&sql="+encodeURI(sql),"export_excle");
       return ;
     }
-   if(Ids=="")
+   if(Ids=="0")
     {
       alert("请选择要操作的会员!");
       return;

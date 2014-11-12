@@ -108,8 +108,8 @@ function SlideSet(name,url)
 
 function set(act)
  {
-   var Ids=Get_Checked("CK");
-   if(Ids=="")
+   var Ids=Get_CheckBox("CK");
+   if(Ids=="0")
     {
       alert("请选择要操作的记录!");
       if(act=="update"){return false;}

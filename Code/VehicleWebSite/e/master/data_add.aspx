@@ -278,7 +278,7 @@ Write_Select(<%=Request.Cookies["SiteId"].Value%>,'<%=The_Table%>');
 <%if(Work_Id!="0" && Current_Work_Node=="0"){%>
 <input type="checkbox" name="rechecked" value="1" checked>重新送审
 <%}%>
-<input type='button' class='button' value='提交' onclick="return Check_ZdyForm('<%=The_Table%>')" onmouseover="Set_Selected('selected-all','zt_list');Set_Selected('selected-all','push_list');Set_Selected('selected-all','qs_list')"> 
+<input type='button' class='button' value='提交' onclick="return Check_ZdyForm('<%=The_Table%>')" onmouseover="set_selected('zt_list',true);set_selected('push_list',true);set_selected('qs_list',true)"> 
 <%if(PostType=="add"){%>
 <input type='button' value='返回' class='button' onclick="location.href='data_<%=TableType=="feedback"?"fbk":""%>list.aspx?table=<%=The_Table%>&name=<%=Server.UrlEncode(Request.QueryString["name"])%><%=Sort_Id=="0"?"":"&sortid="+Sort_Id%>'">
 <%}else{%>
@@ -577,6 +577,22 @@ function clear_select(Id)
    }
  }
 
+function set_selected(Id,isselected)
+ {
+  var obj=document.getElementById(Id);
+  if(obj==null){return;}
+  for(i=0;i<obj.options.length;i++)
+   {
+    if(isselected)
+     {
+       obj.options[i].selected=true;
+     }
+    else
+     {
+       obj.options[i].selected=false;
+     }
+   }
+ }
 
 function get_relatedids()
  {
@@ -626,12 +642,6 @@ function ShowTab()
   }
  }
 
-function sort_Select()
- {
-  IDialog("推送分类","sort_select.aspx?table=<%=The_Table%>",700,400);
- }
-
-//自定义选择数据
 function Data_Select(SourceTable,field,ismultiple,title,Width,Height)
  {
   if(typeof(ismultiple)=="undefined"){ismultiple="0";}
@@ -639,6 +649,11 @@ function Data_Select(SourceTable,field,ismultiple,title,Width,Height)
   if(typeof(Width)=="undefined"){Width=800;}
   if(typeof(Height)=="undefined"){Height=400;}
   IDialog(title,"/e/aspx/data_select.aspx?siteid=<%=Request.Cookies["SiteId"].Value%>&table="+SourceTable+"&field="+field+"&multiple="+ismultiple,800,400);
+ }
+
+function sort_Select()
+ {
+  IDialog("推送分类","sort_select.aspx?table=<%=The_Table%>",700,400);
  }
 </script>
 </html>

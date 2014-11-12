@@ -88,7 +88,6 @@ function open_files(sid,Id,table,field,FieldType,InforId)
    IDialog(title,"/e/aspx/upload_files.aspx?sid="+sid+"&id="+Id+"&table="+table+"&field="+field+"&type="+FieldType+"&inforid="+InforId+"&from=master",Width,Height);
 }
 
-
 function foreColor(id,Addstr){
   if(!Error())	return;
   var arr = showModalDialog("/e/incs/color.html", "foreColor", "dialogWidth:18.5em; dialogHeight:17.5em;status:0;help:no;resizable:no;");
@@ -530,7 +529,7 @@ function GetIPAdd(TheValue)
 
 /*
 //此方法已被注释，建议写到一个独立js文件中，可用来控制表单代码的显示和隐藏，请根据需要自行设计。
-function load_form_structure(type_id,thetype,table) //type_id表示类别id，thetype可选择add,edit，table表示操作的表
+function load_form_structure(type_id,thetype,table) //type_id表示类别id，page_type可选择add,edit表示操作的表，
  {
  }
 */

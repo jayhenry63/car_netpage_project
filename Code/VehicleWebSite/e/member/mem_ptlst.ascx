@@ -26,7 +26,7 @@
         <tr>
                   <td align=center width=10% class=memlist_header_item height=20>事项</td>
                   <td align=center width=15% class=memlist_header_item>点数</td>
-                  <td align=center width=25% class=memlist_header_item><select id="point_type" OnChange="t_change(this.options[this.options.selectedIndex].value)"><option value=""> -- </option><option value="c"> 充值 </option><option value="k"> 扣点 </option><option value="f"> 返点 </option></select></td>
+                  <td align=center width=25% class=memlist_header_item><asp:DropDownList id="D_fnc_type" runat="server" OnSelectedIndexChanged="Fnc_type_change" AutoPostBack="true"><asp:ListItem value=""> -- </asp:ListItem><asp:ListItem value="c"> 充值 </asp:ListItem><asp:ListItem value="k"> 扣点 </asp:ListItem><asp:ListItem value="f"> 返点 </asp:ListItem></asp:DropDownList></td>
                   <td align=center width=25% class=memlist_header_item>备注</td>
                   <td align=center width=25% class=memlist_header_item_last>时间</td>
         </tr>
@@ -62,10 +62,3 @@
 </form>
 </div>
 </div>
-<script type="text/javascript">
-function t_change(sort)
- {
-   location.href="?s=<%=SiteId%>&type=mem_ptlst&sort="+sort;
- }
-document.getElementById("point_type").value="<%=Point_Sort%>";
-</script>

@@ -939,6 +939,20 @@ function Go()
    location.href="?table=<%=TheTable%>&siteid=<%=Site_Id%>&from="+obj_from.value+"&type="+obj_type.value+"&sortid="+obj_sort.value+"&startdate="+escape(obj_date1.value)+"&enddate="+escape(obj_date2.value)+"&field="+obj_field.value+"&keyword="+escape(obj_keyword.value)+"&pagesize="+obj_pagesize.value;
   }
 
+function Get_CheckBox(Name)
+ {
+   var Obj=document.getElementsByName(Name);
+   var ID="0";
+   for(i=0;i<Obj.length;i++)
+     {
+      if(Obj[i].checked)
+       {
+         ID+=","+Obj[i].value;
+       }
+     }
+   return ID.replace("0,","");
+ }
+
 function add(did)
  {
    if(confirm("是否确定加入到全站搜索表中?"))
@@ -980,9 +994,9 @@ function set(act)
       document.forms[0].submit();
       return;
     }
-   var Ids=Get_Checked("CK");
+   var Ids=Get_CheckBox("CK");
    var A_Ids=Ids.split(",");
-   if(Ids=="")
+   if(Ids=="0")
     {
       alert("请选择要操作的信息!");
       return;

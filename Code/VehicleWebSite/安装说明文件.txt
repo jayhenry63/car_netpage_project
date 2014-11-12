@@ -1,0 +1,21 @@
+PageAdmin V3系统运行环境：
+
+空间要求：IIs+Framework2.0或以上版本
+数据库：Access或Mssql Server 2000或更高版本
+邮件组件：建议安装Jmail组件
+URL静态化：要求主机商可根据需要配置IIS
+默认文档设置：index.html,index.aspx 必须设置两个，其中index.html优先于index.aspx
+
+域名空间注册网站：http://www.18inter.com
+
+安装配置说明：http://www.pageadmin.net/help/
+
+
+如有使用上疑问，请上官方论坛提出.
+   
+
+系统会不定时升级或更新，请登陆bbs.pageadmin.net关注最新版本发布情况。
+
+
+
+

@@ -1,6 +1,6 @@
 ﻿<% @ Control  language="c#"  Inherits="PageAdmin.mem_menu"%>
 <asp:PlaceHolder id="P_meminfo" runat="server" Visible="false">
-<div class="nav_box nav_box_introduct nav_box_loginstate">
+<div class="nav_box nav_box_introduct" style="margin:0 0 5px 0">
 <div class="nav_title"><span class="nav_sign">用户资料</span></div>
 <div class="nav_content">
 会员名：<%=UserName%><% if(msg_icon_show=="1"){%><a href="<%=Get_Url("mem_msg")%>"><img src=/e/images/public/message.gif border=0 width=20px height=17px></a><%}%><br>
@@ -9,7 +9,7 @@
 </div>
 </div>
 </asp:PlaceHolder>
-<div class="nav_box nav_box_sublanmu nav_box_membermenu">
+<div class="nav_box nav_box_sublanmu">
 <div class="nav_title"><span class="nav_sign">会员中心</span></div>
 <div class="nav_menu">
  <ul><asp:PlaceHolder id="P_message" runat="server" Visible="false" >

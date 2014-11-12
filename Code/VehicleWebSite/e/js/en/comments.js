@@ -12,7 +12,7 @@ function Load_Comments(Table,DetailId,Page,GoTop) //读取评论
   if(typeof(comment_order)!="undefined"){order=comment_order;}
   if(typeof(comment_pagesize)!="undefined"){pagesize=comment_pagesize;}
   Id("c_title_sign").innerHTML="发布评论";
-  if(Id("c_user_sign")!=null)Id("c_user_sign").innerHTML="用户：";
+  if(Id("c_name_sign")!=null)Id("c_name_sign").innerHTML="用户：";
   if(Id("c_yzm_sign")!=null)Id("c_yzm_sign").innerHTML="验证码：";
   if(Id("c_username_sign")!=null)
   {
@@ -20,7 +20,7 @@ function Load_Comments(Table,DetailId,Page,GoTop) //读取评论
    Id("c_pass_sign").innerHTML="密码：";
   }
   if(Id("c_anonymous_sign")!=null)Id("c_anonymous_sign").innerHTML="匿名";
-  if(Id("c_user")!=null)Id("c_user").value="游客";
+  if(Id("c_username")!=null)Id("c_username").value="游客";
   Id("c_submit").value="提交";
   if(GoTop==null)
    {
@@ -71,7 +71,7 @@ function Write_Comments(Rv) //Load_Comments后加载评论
     if(c_anonymous_box!=null)
     {
      c_anonymous_box.style.display="none";
-    Id("c_anonymous").checked=false;
+    Id("anonymous").checked=false;
     }
    }
  }
@@ -84,7 +84,7 @@ function Add_Comments_Over(v,Table,DetailId)  //Addcomment后的回调函数
    if(c_yzm!=null)
      {
       c_yzm.value="";
-      Code_Change("c_yzmcode");
+      Code_Change("yzmcode");
      }
    switch(v)
     {
@@ -176,7 +176,7 @@ function check_comments() //评论输入检查
    var IsMember=0;
    var c_quote=Id("c_quote");
    var c_content=Id("c_content");
-   var c_anonymous=Id("c_anonymous");
+   var c_anonymous=Id("anonymous");
    if(c_anonymous==null)
     {
       IsMember=1;
@@ -213,7 +213,7 @@ function check_comments() //评论输入检查
    var c_name,c_yzm,username,password;
    if(IsMember==0)
     {
-      c_name=Id("c_user");
+      c_name=Id("c_username");
       if(c_name==null)
        {
          return;
@@ -240,7 +240,7 @@ function check_comments() //评论输入检查
   else
    {
       var UserName,Pass;
-      username=Id("c_username");
+      username=Id("username");
       if(username!=null)
       {
         if(Trim(username.value)=="")
@@ -255,7 +255,7 @@ function check_comments() //评论输入检查
       {
        UserName="";
       }
-     password=Id("c_password");
+     password=Id("password");
      if(password!=null)
      {
        if(Trim(password.value)=="")

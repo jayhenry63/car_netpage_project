@@ -91,7 +91,7 @@
           <asp:Button Text=" 修改 " Cssclass="button" Runat="server" id="Bt_Update" onclick="Data_Update" Visible="false" />
           <asp:Button Text=" 取消 " Cssclass="button" Runat="server" id="Bt_Cancel" onclick="Data_Cancel" Visible="false" />
           <asp:Button Text=" 提交 " Cssclass="button" Runat="server" id="Bt_Add"  onclick="Data_Add"    Visible="true"/>
-          <input type="button"  value="返回"  class="button" onclick="location.href='data_list.aspx?table=<%=Request.QueryString["table"]%>&name=<%=Server.UrlEncode(Request.QueryString["name"])%>'">
+          <input type="button"  value="返回"  class="button" onclick="location.href='data_fbklist.aspx?table=<%=Request.QueryString["table"]%>&name=<%=Server.UrlEncode(Request.QueryString["name"])%>'">
        </td>
      </tr>
 </table>

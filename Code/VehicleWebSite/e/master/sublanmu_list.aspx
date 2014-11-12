@@ -251,13 +251,28 @@ function Del(did)
    }
  }
 
+function Get_CheckBox(Name)
+ {
+   var Obj=document.getElementsByName(Name);
+   var ID="0";
+   for(i=0;i<Obj.length;i++)
+     {
+      if(Obj[i].checked)
+       {
+         ID+=","+Obj[i].value;
+       }
+     }
+   return ID.replace("0,","");
+ }
+
+
 function set(act)
  {
 
-   var Ids=Get_Checked("CK");
+   var Ids=Get_CheckBox("CK");
    var A_Ids=Ids.split(",");
    var obj_isfinal;
-   if(Ids=="")
+   if(Ids=="0")
     {
       alert("请选择要操作的子栏目!");
       return;
@@ -357,8 +372,8 @@ function Sublanmu_PSet(name)
 
 function build_htm()
  {
-  var Ids=Get_Checked("CK");
-  if(Ids=="")
+  var Ids=Get_CheckBox("CK");
+  if(Ids=="0")
    {
      alert("请选择要生成的子栏目!");
      return;

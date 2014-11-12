@@ -52,11 +52,24 @@
 </div>
 </div>
 <script type="text/javascript">
+function Get_CheckBox(Name)
+ {
+   var Obj=document.getElementsByName(Name);
+   var ID="0";
+   for(i=0;i<Obj.length;i++)
+     {
+      if(Obj[i].checked)
+       {
+         ID+=","+Obj[i].value;
+       }
+     }
+   return ID.replace("0,","");
+ }
 
 function Delete_Msg()
  { 
-  var IDS=Get_Checked("CK");
-  if(IDS=="")
+  var IDS=Get_CheckBox("CK");
+  if(IDS=="0")
    {
      alert("请选择要删除的信息!");
      return;
@@ -69,4 +82,6 @@ function Delete_Msg()
      }
    }
  }
+
+
 </script>

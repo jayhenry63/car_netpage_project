@@ -12,7 +12,7 @@ for(int i=0;i<dt.Rows.Count;i++)
  {
 dr=dt.Rows[i];
 %>
-<li  style="<%=TitlePic_Size%>">
+<li style="<%=TitlePic_Size%>">
 <a href="<%=Detail_Url(dr)%>" target="<%=Target%>"><img src="<%=dr["titlepic"]%>" border="0" style="<%=TitlePic_Size%>"></a>
 <span class="title">
 <a href="<%=Detail_Url(dr)%>" target="<%=Target%>" title="<%=Server.HtmlEncode(dr["title"].ToString())%>" style="<%=dr["pa_style"]%>"><%=SubStr(dr["title"].ToString(),Title_Num,true)%></a></span>
@@ -21,6 +21,7 @@ dr=dt.Rows[i];
  }
 %>
 </ul>
+<div class="clear"></div>
 <%conn.Close();}
 if(PageCount>1)
 {

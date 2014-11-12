@@ -58,9 +58,9 @@
 <script type="text/javascript">
  function payck()
   {
-   var Id=Get_Checked("pid");
+   var Id=Get_CheckBox("pid");
    var fnc_ky=<%=Fnc_Ky%>;
-   if(Id=="")
+   if(Id=="0")
     {
       alert("请选择要充值的类型!");
       return false;

@@ -121,11 +121,25 @@
 </center>
 <script type="text/javascript">
 MouseoverColor("tb_lanmulist");
-var htmltype=document.getElementById("htmltype");
+var htmltype=document.getElementById("htmltype")
+function Get_CheckBox(Name)
+ {
+   var Obj=document.getElementsByName(Name);
+   var ID="0";
+   for(i=0;i<Obj.length;i++)
+     {
+      if(Obj[i].checked)
+       {
+         ID+=","+Obj[i].value;
+       }
+     }
+   return ID.replace("0,","");
+ }
+
 function html()
  {
-  var Ids=Get_Checked("CK");
-  if(Ids=="")
+  var Ids=Get_CheckBox("CK");
+  if(Ids=="0")
      {
       alert("请选择要生成的栏目!");
       return;
@@ -161,9 +175,9 @@ function del(did,dname)
 
 function set(act)
  {
-   var Ids=Get_Checked("CK");
+   var Ids=Get_CheckBox("CK");
    var A_Ids=Ids.split(",");
-   if(Ids=="")
+   if(Ids=="0")
     {
       alert("请选择要操作的栏目!");
       return;

@@ -179,6 +179,19 @@
    location.href="?table="+Table+"&name="+escape(Tname)+"&sortid="+obj_sort.value+"&from="+obj_from.value+"&type="+obj_type.value+"&field="+obj_field.value+"&order="+obj_order.value+"&keyword="+escape(obj_keyword.value)+"&pagesize="+obj_pagesize.value;
   }
 
+function Get_CheckBox(Name)
+ {
+   var Obj=document.getElementsByName(Name);
+   var ID="0";
+   for(i=0;i<Obj.length;i++)
+     {
+      if(Obj[i].checked)
+       {
+         ID+=","+Obj[i].value;
+       }
+     }
+   return ID.replace("0,","");
+ }
 
 function single_del()
  {
@@ -200,7 +213,7 @@ function EditInfo(url)
 
 function set(act)
  {
-   var Ids=Get_Checked("CK");
+   var Ids=Get_CheckBox("CK");
    if(act=="import_excle")
     {
       IDialog("导入Excel数据","data_import.aspx?table="+Table+"&sortid="+Sortid,660,230);
@@ -219,7 +232,7 @@ function set(act)
       //window.open("alldata_list.aspx?siteid=<%=SiteId%>&table="+Table+"&order="+Order","alldata");
       return;
     }
-   if(Ids=="" && act!="pset")
+   if(Ids=="0" && act!="pset")
     {
       alert("请选择要操作的信息!");
       return;
@@ -269,7 +282,7 @@ function set(act)
   document.getElementById("ids").value=Ids;
   if(act=="pset")
     {
-      if(Ids=="")
+      if(Ids=="0")
        {
          if(!confirm("不选择信息则对所有信息进行设置，是否继续!"))
           {
@@ -287,8 +300,8 @@ function html()
   var obj=document.getElementById("htmltype")
   if(obj.value=="0")
    {
-     var Ids=Get_Checked("CK");
-     if(Ids=="")
+     var Ids=Get_CheckBox("CK");
+     if(Ids=="0")
      {
       alert("请选择要生成的记录!");
       return;

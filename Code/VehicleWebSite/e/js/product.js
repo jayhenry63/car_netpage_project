@@ -8,7 +8,6 @@ function LoadImg(i)
    HideAllpic();
    picture[i].style.display="block";
    thumbnail[i].className="current";
-   imageindex=i;
  }
 
 function HideAllpic()

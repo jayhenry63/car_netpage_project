@@ -19,6 +19,20 @@ function AlreadyInOrder()
   //location.href=location.href;
  }
 
+function Get_CheckBox(Name)
+ {
+   var Obj=document.getElementsByName(Name);
+   var ID="0";
+   for(i=0;i<Obj.length;i++)
+     {
+      if(Obj[i].checked)
+       {
+         ID+=","+Obj[i].value;
+       }
+     }
+   return ID.replace("0,","");
+ }
+
 function edit_order() //修改参数
  {
    var Obj=document.getElementsByName("id");

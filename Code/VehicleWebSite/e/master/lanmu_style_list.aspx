@@ -61,12 +61,12 @@
          </asp:Repeater>
          <tr>
           <td colspan="4" align="left" class="tdstyle" style="display:<%=ListCount==0?"none":""%>">
-<input type="button" class="button" value="反选" onclick="CheckBox_Inverse('CK')"/>
-<input type="hidden" value="" name="ids" id="ids">
-<input type="hidden" value="" name="act" id="act">
-<input type="hidden" value="" name="delname" id="delname">
-<input type="button" value="更新" class="button" id="sbt" onclick="set('update')"/>
-[<a href="javascript:set('pdelete')">删除</a>]
+          <input type="button" class="button" value="反选" onclick="CheckBox_Inverse('CK')"/>
+          <input type="hidden" value="" name="ids" id="ids">
+          <input type="hidden" value="" name="act" id="act">
+          <input type="hidden" value="" name="delname" id="delname">
+          <input type="button" value="更新" class="button" id="sbt" onclick="set('update')"/>
+          [<a href="javascript:set('pdelete')">删除</a>]
           </td>
          </tr>
          </table>
@@ -144,9 +144,9 @@ function del(did,dname)
 
 function set(act)
  {
-   var Ids=Get_Checked("CK");
+   var Ids=Get_CheckBox("CK");
    var A_Ids=Ids.split(",");
-   if(Ids=="")
+   if(Ids=="0")
     {
       alert("请选择要操作的记录!");
       return;

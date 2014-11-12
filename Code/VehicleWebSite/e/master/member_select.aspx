@@ -141,6 +141,20 @@
  if(obj_field!=null && Field!=""){obj_field.value=Field;}
  if(obj_keyword!=null){obj_keyword.value=Keyword;}
 
+function Get_CheckBox(Name)
+ {
+   var Obj=document.getElementsByName(Name);
+   var ID="0";
+   for(i=0;i<Obj.length;i++)
+     {
+      if(Obj[i].checked)
+       {
+         ID+=","+Obj[i].value;
+       }
+     }
+   return ID.replace("0,","");
+ }
+
 function Go()
   { 
    if(obj_keyword.value!="")
@@ -157,8 +171,8 @@ function Go()
 
 function Get_Select()
  {
-  var UserNames=Get_Checked("CK");
-  if(UserNames=="")
+  var UserNames=Get_CheckBox("CK");
+  if(UserNames=="0")
    {
      alert("请选择用户!");
      return;

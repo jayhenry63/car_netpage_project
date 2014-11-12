@@ -258,11 +258,10 @@ Write_Select(<%=SiteId%>,'<%=TheTable%>')
 	<option value="isgood=0">排除&quot;推荐&quot;信息</option>
 	<option value="isnew=0">排除&quot;最新&quot;信息</option>
 	<option value="ishot=0">排除&quot;热门&quot;信息</option>
-	<option value="source_id=0">排除&quot;推送&quot;信息</option>
 	<option value="reply_state>=1">排除&quot;未回复&quot;信息</option>
 	<option value="titlepic&lt;>''">排除无&quot;标题图片&quot;信息</option>
 
-</select>条件：<input name="zdy_condition" type="text" id="zdy_condition" size="30" />
+</select>条件：<input name="zdy_condition" type="text" maxlength="50" id="zdy_condition" size="30" />
 
 </td>
  </tr>
